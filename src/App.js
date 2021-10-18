@@ -3,6 +3,7 @@ import data from "./data.json";
 import { Header } from "./Header/header";
 import { ToDoList } from "./ToDoList/ToDoList";
 import "./App.css";
+import { ToDoForm } from "./ToDoForm";
 /**
  * @author
  * @function App
@@ -25,6 +26,12 @@ export const App = (props) => {
     console.log(filtered);
     setToDoList(filtered);
   };
+  const addTask = (userInput) => {
+    setToDoList([
+      ...toDoList,
+      { id: toDoList.length + 1, task: userInput, complete: false },
+    ]);
+  };
   return (
     <div className="App">
       <Header />
@@ -33,6 +40,7 @@ export const App = (props) => {
         handleToggle={handleToggle}
         handleFilter={handleFilter}
       />
+      <ToDoForm toDoList={toDoList} addTask={addTask} />
     </div>
   );
 };
